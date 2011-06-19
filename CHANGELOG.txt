@@ -1,3 +1,1 @@
-Version 2.0 brings the Cocktail app to the iPad and is also available in English. 
-
-- right now we only list all cocktails on the devices
+Version 2.0 brings the Cocktail app to the iPad and is also available in English.
