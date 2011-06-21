@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<string name="cocktails">Cocktails</string>
+	<string name="ingredients">Zutaten</string>
+	<string name="instruction">Zubereitung</string>
+	<string name="description">Beschreibung</string>
+	<string name="source">Quelle</string>
+	<string name="video_instruction">Videoanleitung</string>
 	<string name="recipe_details">Rezeptdetails</string>
 </resources>

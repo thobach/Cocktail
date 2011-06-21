@@ -1,21 +1,24 @@
-var videos = []
+var videos = [];
 
 function getVideos() {
-	var videoNumber = 0;
-	for(var i = 0; i < recipesJson.length; i++) {
-		if(recipesJson[i].videos.video != null && !videoLoaded(recipesJson[i].videos.video['@attributes'].id)) {
-			var video = new Video();
-			video.setListNumber(videoNumber);
-			video.setId(recipesJson[i].videos.video['@attributes'].id);
-			video.setName(recipesJson[i].videos.video['@attributes'].name);
-			video.setDescription(recipesJson[i].videos.video['@attributes'].description);
-			video.setUrl(recipesJson[i].videos.video['@attributes'].url);
-			video.setInsertDate(recipesJson[i].videos.video['@attributes'].insertDate);
-			video.setUpdateDate(recipesJson[i].videos.video['@attributes'].updateDate);
-			videos.push(video);
-			videoNumber++;
+	if(videos.length == 0){
+		var videoNumber = 0;
+		for(var i = 0; i < recipesJson.length; i++) {
+			if(recipesJson[i].videos.video != null && !videoLoaded(recipesJson[i].videos.video['@attributes'].id)) {
+				var video = new Video();
+				video.setListNumber(videoNumber);
+				video.setId(recipesJson[i].videos.video['@attributes'].id);
+				video.setName(recipesJson[i].videos.video['@attributes'].name);
+				video.setDescription(recipesJson[i].videos.video['@attributes'].description);
+				video.setUrl(recipesJson[i].videos.video['@attributes'].url);
+				video.setInsertDate(recipesJson[i].videos.video['@attributes'].insertDate);
+				video.setUpdateDate(recipesJson[i].videos.video['@attributes'].updateDate);
+				videos.push(video);
+				videoNumber++;
+			}
 		}
 	}
+	return videos;
 }
 
 function videoLoaded(id) {
@@ -75,6 +78,9 @@ Video.prototype.setUrl = function (value) {
 }
 Video.prototype.getUrl = function () {
 	return this.url;
+}
+Video.prototype.getYoutubeCode = function () {
+	return this.url.substr('http://www.youtube.com/v/'.length);
 }
 Video.prototype.setInsertDate = function (value) {
 	this.insertDate = value;

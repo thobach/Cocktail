@@ -1,43 +1,3 @@
-var glasses = []
-
-function getGlasses() {
-	if(glasses.length == 0){
-		var glassNumber = 0;
-		for(var i = 0; i < recipesJson.length; i++) {
-			if(!glassLoaded(recipesJson[i].glass['@attributes'].id)) {
-				var glass = new Glass();
-				glass.setListNumber(glassNumber);
-				glass.setId(recipesJson[i].glass['@attributes'].id);
-				glass.setName(recipesJson[i].glass['@attributes'].name);
-				glass.setDescription(recipesJson[i].glass['@attributes'].description);
-				glass.setVolumeMl(recipesJson[i].glass['@attributes'].volumeMl);
-				glass.setPhotoId(recipesJson[i].glass.photo['@attributes'].id);
-				glasses.push(glass);
-				glassNumber++;
-			}
-		}
-	}
-	return glasses;
-}
-
-function glassLoaded(id) {
-	for(var i = 0; i < glasses.length; i++) {
-		if(glasses[i].getId() == id) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function getGlass(id) {
-	for(var i = 0; i < glasses.length; i++) {
-		if(glasses[i].getId() == id) {
-			return glasses[i];
-		}
-	}
-	return null;
-}
-
 function Glass() {
 	this.listNumber;
 	this.id;
@@ -82,4 +42,46 @@ Glass.prototype.setPhotoId = function (value) {
 }
 Glass.prototype.getPhotoId = function () {
 	return this.photoId;
+}
+
+Glass.getGlasses = function () {
+	if(Titanium.Locale.currentLanguage=="de"){
+		Ti.include("../data/recipes_de.js");
+	} else {
+		Ti.include("../data/recipes.js");
+	}
+	var glasses = [];
+	var glassNumber = 0;
+	for(var i = 0; i < recipesJson.length; i++) {
+		if(!Glass.glassLoaded(recipesJson[i].glass['@attributes'].id, glasses)) {
+			var glass = new Glass();
+			glass.setListNumber(glassNumber);
+			glass.setId(recipesJson[i].glass['@attributes'].id);
+			glass.setName(recipesJson[i].glass['@attributes'].name);
+			glass.setDescription(recipesJson[i].glass['@attributes'].description);
+			glass.setVolumeMl(recipesJson[i].glass['@attributes'].volumeMl);
+			glass.setPhotoId(recipesJson[i].glass.photo['@attributes'].id);
+			glasses.push(glass);
+			glassNumber++;
+		}
+	}
+	return glasses;
+}
+
+Glass.glassLoaded = function (id, glasses) {
+	for(var i = 0; i < glasses.length; i++) {
+		if(glasses[i].getId() == id) {
+			return true;
+		}
+	}
+	return false;
+}
+
+Glass.getGlass = function (id, glasses) {
+	for(var i = 0; i < glasses.length; i++) {
+		if(glasses[i].getId() == id) {
+			return glasses[i];
+		}
+	}
+	return null;
 }

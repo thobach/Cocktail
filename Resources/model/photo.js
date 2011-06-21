@@ -1,4 +1,4 @@
-var photos = []
+var photos = [];
 
 function getPhotos() {
 	if(photos.length == 0){
@@ -91,7 +91,11 @@ Photo.prototype.setUrl = function (value) {
 	this.url = value;
 }
 Photo.prototype.getUrl = function () {
-	return this.url;
+	if(this.getPhotoCategory() == 2){
+		return '/images/glasses/' + this.getOriginalFileName();
+	} else {
+		return this.url;
+	}
 }
 Photo.prototype.setOriginalFileName = function (value) {
 	this.originalFileName = value;
