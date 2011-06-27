@@ -1,4 +1,3 @@
-
 function Component() {
 	this.ingredientId;
 	this.amount;
@@ -45,9 +44,7 @@ Component.prototype.getText = function () {
 Component.getIngredientList = function (components){
 	var ingredientList = "";
 	for (var i = 0; i < components.length; i++) {
-		if (components[i] instanceof Component) {
-			ingredientList += components[i].getText() + "\n";
-		}
+		ingredientList += components[i].getText() + "\n";
 	}
 	return ingredientList;
 }

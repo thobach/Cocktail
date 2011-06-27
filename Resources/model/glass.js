@@ -44,12 +44,7 @@ Glass.prototype.getPhotoId = function () {
 	return this.photoId;
 }
 
-Glass.getGlasses = function () {
-	if(Titanium.Locale.currentLanguage=="de"){
-		Ti.include("../data/recipes_de.js");
-	} else {
-		Ti.include("../data/recipes.js");
-	}
+Glass.getGlasses = function (recipesJson) {
 	var glasses = [];
 	var glassNumber = 0;
 	for(var i = 0; i < recipesJson.length; i++) {
@@ -69,18 +64,22 @@ Glass.getGlasses = function () {
 }
 
 Glass.glassLoaded = function (id, glasses) {
-	for(var i = 0; i < glasses.length; i++) {
-		if(glasses[i].getId() == id) {
-			return true;
+	if(id != '' && glasses instanceof Array){
+		for(var i = 0; i < glasses.length; i++) {
+			if(glasses[i].getId() == id) {
+				return true;
+			}
 		}
 	}
 	return false;
 }
 
 Glass.getGlass = function (id, glasses) {
-	for(var i = 0; i < glasses.length; i++) {
-		if(glasses[i].getId() == id) {
-			return glasses[i];
+	if(id != '' && glasses instanceof Array){
+		for(var i = 0; i < glasses.length; i++) {
+			if(glasses[i].getId() == id) {
+				return glasses[i];
+			}
 		}
 	}
 	return null;

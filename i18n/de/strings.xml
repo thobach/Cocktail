@@ -7,4 +7,19 @@
 	<string name="source">Quelle</string>
 	<string name="video_instruction">Videoanleitung</string>
 	<string name="recipe_details">Rezeptdetails</string>
+	<string name="alcoholic">alkoholisch</string>
+	<string name="non_alcoholic">alkoholfrei</string>
+	<string name="original_recipe">Originalrezept</string>
+	<string name="random_title">Schüttel deinen Zufallscocktail</string>
+	<string name="random_tab">Zufallscocktail</string>
+	<string name="glass">Glas</string>
+	<string name="further_information">Weitere Informationen</string>
+	<string name="volume">Volumen</string>
+	<string name="preparation_time">Zubereitungszeit</string>
+	<string name="calories">Kalorien</string>
+	<string name="difficulty">Schwierigkeitsgrad</string>
+	<string name="alcohol_level">Alkoholgehalt</string>
+	<string name="beginner">Anfänger</string>
+	<string name="advanced">Fortgeschritten</string>
+	<string name="profi">Profi</string>
 </resources>

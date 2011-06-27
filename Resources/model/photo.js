@@ -1,58 +1,3 @@
-var photos = [];
-
-function getPhotos() {
-	if(photos.length == 0){
-		var photoNumber = 0;
-		for(var i = 0; i < recipesJson.length; i++) {
-			// glass photo
-			if(!photoLoaded(recipesJson[i].glass.photo['@attributes'].id)) {
-				var photo = new Photo();
-				photo.setListNumber(photoNumber);
-				photo.setId(recipesJson[i].glass.photo['@attributes'].id);
-				photo.setName(recipesJson[i].glass.photo['@attributes'].name);
-				photo.setDescription(recipesJson[i].glass.photo['@attributes'].description);
-				photo.setUrl(recipesJson[i].glass.photo['@attributes'].url);
-				photo.setOriginalFileName(recipesJson[i].glass.photo['@attributes'].originalFileName);
-				photo.setPhotoCategory(recipesJson[i].glass.photo['@attributes'].photoCategory);
-				photos.push(photo);
-				photoNumber++;
-			}
-			// recipe photos
-			if(recipesJson[i].photos.photo != null && !photoLoaded(recipesJson[i].photos.photo['@attributes'].id)) {
-				var photo = new Photo();
-				photo.setListNumber(photoNumber);
-				photo.setId(recipesJson[i].photos.photo['@attributes'].id);
-				photo.setName(recipesJson[i].photos.photo['@attributes'].name);
-				photo.setDescription(recipesJson[i].photos.photo['@attributes'].description);
-				photo.setUrl(recipesJson[i].photos.photo['@attributes'].url);
-				photo.setOriginalFileName(recipesJson[i].photos.photo['@attributes'].originalFileName);
-				photo.setPhotoCategory(recipesJson[i].photos.photo['@attributes'].photoCategory);
-				photos.push(photo);
-				photoNumber++;
-			}
-		}
-	}
-	return photos;
-}
-
-function photoLoaded(id) {
-	for(var i = 0; i < photos.length; i++) {
-		if(photos[i].getId() == id) {
-			return true;
-		}
-	}
-	return false;
-}
-
-function getPhoto(id) {
-	for(var i = 0; i < photos.length; i++) {
-		if(photos[i].getId() == id) {
-			return photos[i];
-		}
-	}
-	return null;
-}
-
 function Photo() {
 	this.listNumber;
 	this.id;
@@ -108,4 +53,59 @@ Photo.prototype.setPhotoCategory = function (value) {
 }
 Photo.prototype.getPhotoCategory = function () {
 	return this.photoCategory;
+}
+
+Photo.photoLoaded = function (id, photos) {
+	for(var i = 0; i < photos.length; i++) {
+		if(photos[i].getId() == id) {
+			return true;
+		}
+	}
+	return false;
+}
+
+Photo.getPhoto = function (id, photos) {
+	if(photos instanceof Array){
+		for(var i = 0; i < photos.length; i++) {
+			if(photos[i].getId() == id) {
+				return photos[i];
+			}
+		}
+	}
+	return null;
+}
+
+
+Photo.getPhotos = function (recipesJson) {
+	var photos = [];
+	var photoNumber = 0;
+	for(var i = 0; i < recipesJson.length; i++) {
+		// glass photo
+		if(!Photo.photoLoaded(recipesJson[i].glass.photo['@attributes'].id, photos)) {
+			var photo = new Photo();
+			photo.setListNumber(photoNumber);
+			photo.setId(recipesJson[i].glass.photo['@attributes'].id);
+			photo.setName(recipesJson[i].glass.photo['@attributes'].name);
+			photo.setDescription(recipesJson[i].glass.photo['@attributes'].description);
+			photo.setUrl(recipesJson[i].glass.photo['@attributes'].url);
+			photo.setOriginalFileName(recipesJson[i].glass.photo['@attributes'].originalFileName);
+			photo.setPhotoCategory(recipesJson[i].glass.photo['@attributes'].photoCategory);
+			photos.push(photo);
+			photoNumber++;
+		}
+		// recipe photos
+		if(recipesJson[i].photos != null && recipesJson[i].photos.photo != null && !Photo.photoLoaded(recipesJson[i].photos.photo['@attributes'].id, photos)) {
+			var photo = new Photo();
+			photo.setListNumber(photoNumber);
+			photo.setId(recipesJson[i].photos.photo['@attributes'].id);
+			photo.setName(recipesJson[i].photos.photo['@attributes'].name);
+			photo.setDescription(recipesJson[i].photos.photo['@attributes'].description);
+			photo.setUrl(recipesJson[i].photos.photo['@attributes'].url);
+			photo.setOriginalFileName(recipesJson[i].photos.photo['@attributes'].originalFileName);
+			photo.setPhotoCategory(recipesJson[i].photos.photo['@attributes'].photoCategory);
+			photos.push(photo);
+			photoNumber++;
+		}
+	}
+	return photos;
 }

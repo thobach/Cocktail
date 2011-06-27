@@ -7,4 +7,19 @@
 	<string name="source">Source</string>
 	<string name="video_instruction">Video Instruction</string>
 	<string name="recipe_details">Recipe Details</string>
+	<string name="alcoholic">alcoholic</string>
+	<string name="non_alcoholic">non-alcoholic</string>
+	<string name="original_recipe">original recipe</string>
+	<string name="random_title">Shake Your Random Cocktail</string>
+	<string name="random_tab">Random Cocktail</string>
+	<string name="glass">Glass</string>
+	<string name="further_information">Further Information</string>
+	<string name="volume">Volume</string>
+	<string name="preparation_time">Preparation Time</string>
+	<string name="calories">Calories</string>
+	<string name="difficulty">Difficulty</string>
+	<string name="alcohol_level">Alcohol Level</string>
+	<string name="beginner">Beginner</string>
+	<string name="advanced">Advanced</string>
+	<string name="profi">Professional</string>
 </resources>
